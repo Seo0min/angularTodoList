@@ -9,20 +9,31 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class AppComponent {
-  title = 'todolist';
+  title = 'TO DO LIST';
 
   filter: 'all' | 'active' | 'done' = 'all';
 
-  Items = [
+  items = [
     { description: 'study Angular', done: true },
     { description: 'eat dinner', done: false },
+    { description: 'work out', done: false },
   ];
+
+  // add
+  addItem(description: string) {
+    if (!description) return;
+
+    this.items.unshift({
+      description,
+      done: false,
+    });
+  }
 
   get filteredItems() {
     if (this.filter === 'all') {
-      return this.Items;
+      return this.items;
     }
-    return this.Items.filter((item: any) => {
+    return this.items.filter((item) => {
       this.filter === 'done' ? item.done : !item.done;
     });
   }

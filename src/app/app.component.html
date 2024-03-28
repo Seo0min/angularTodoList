@@ -6,6 +6,21 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>컴포넌트 보이나요</h1>
+    <h1>{{ title }}</h1>
+    <label for="add-Input"
+      >Never put off till tomorrow what you can do today</label
+    >
+    <div>
+      <input
+        #newItem
+        placeholder="add"
+        (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+        id="add-Input"
+      />
+      <button (click)="addItem(newItem.value)">+</button>
+    </div>
+    <ul>
+      <li *ngFor="let item of items">{{ item.description }}</li>
+    </ul>
   </body>
 </html>
